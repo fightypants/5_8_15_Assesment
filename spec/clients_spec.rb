@@ -14,8 +14,14 @@ describe('Clients') do
     end
   end
 
-  define_method(:==) do |another_client|
-    self.name().==(another_client.name())
+  describe('#save') do
+    it('saves a clients object to the clients Database') do
+      new_client = Clients.new({:name => "billy"})
+      new_client.save()
+      expect(Clients.all()).to(eq([new_client]))
+    end
   end
+
+
 
 end
