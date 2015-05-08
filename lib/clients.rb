@@ -26,5 +26,16 @@ end
     self.name().==(another_client.name())
   end
 
+  define_singleton_method(:find) do |identification|
+    found_client = nil
+    Clients.all().each() do |client|
+      if client.id() == identification
+        found_client = client
+      end
+    end
+    found_client
+  end
+
+
 
 end
