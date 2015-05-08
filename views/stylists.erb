@@ -1,0 +1,23 @@
+<h1>Welcome to the Employees Page</h1>
+
+<p>Add an Employee to the database:</p>
+
+<form action="/stylists" method="post">
+  <label for="name">Employee's name:</label>
+  <input id="name" name="name" type="text">
+
+  <button type="submit">Add Employee</button>
+</form>
+
+
+<% if @stylists.any?() %>
+  <p>Click on employee to associate clients:</p>
+
+  <ul>
+    <% @stylists.each do |stylist| %>
+    <li><a href="/stylists/<%= stylist.id() %>"><%= stylist.name() %></a></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>You need to hire people!</p>
+<% end %>

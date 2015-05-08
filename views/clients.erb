@@ -1,0 +1,14 @@
+<h1>Welcome to the Clients page</h1>
+
+<p>Add a client:</p>
+
+<% if @stylists.any?() %>
+  <form action="/clients" method="post">
+    <label for="name">Client's name:</label>
+    <input id="name" name="name" type="text">
+    <button type="submit">Add a Client</button>
+  </form>
+
+<% else %>
+  <p>You need to hire some employees before you can add Clients!</p>
+<% end %>

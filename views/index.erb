@@ -1,0 +1,20 @@
+<h1>Welcome to the Hair Salon CRM Tool</h1>
+
+
+<p><a href ='/stylists'> Add a new Employee </a></p>
+<p><a href ='/clients'> Add a new Client</a></p>
+
+<h3>Here is a list of all your employees</h3>
+
+<% if @stylists.any?() %>
+  <p>Click on an employee to manage there relationships</p>
+
+  <ul>
+    <% @stylists.each do |stylist| %>
+      <li><a href='/stylists/<%= stylist.id() %>'><%= stylist.name() %></a></li>
+    <% end %>
+  </ul>
+
+  <% else %>
+      <p>You need to hire stylists!</p>
+  <% end %>
