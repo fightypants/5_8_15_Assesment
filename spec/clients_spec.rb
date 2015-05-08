@@ -41,6 +41,17 @@ describe('Clients') do
     end
   end
 
+  describe('#delete') do
+    it('will delete a client') do
+      new_client = Clients.new({:name => "Kha"})
+      new_client.save()
+      new_client2 = Clients.new({:name => "Pratt"})
+      new_client2.save()
+      new_client.delete()
+      expect(Clients.all()).to(eq([new_client2]))
+    end
+  end
+
 
 
 end
