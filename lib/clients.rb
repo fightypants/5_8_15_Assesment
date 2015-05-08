@@ -10,4 +10,17 @@ class Clients
     result = DB.exec("INSERT INTO clients (name) VALUES ('#{@name}') RETURNING id;")
     @id = result.first().fetch("id").to_i()
   end
+
+  define_singleton_method(:all) do
+    clients_list = []
+    all_clients = DB.exec("SELECT * FROM clients")
+    all_clients.each do |client|
+      name = client.fetch('name')
+      id = client.fetch('id').to_i()
+      clients_list.push(Clients.new({:name => name, :id => id}))
+    end
+    clients_list
+  end
+
+
 end
