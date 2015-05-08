@@ -16,7 +16,7 @@ describe('Clients') do
 
   describe('#save') do
     it('saves a clients object to the clients Database') do
-      new_client = Clients.new({:name => "billy"})
+      new_client = Clients.new({:name => "billy",:stylist_id => 1})
       new_client.save()
       expect(Clients.all()).to(eq([new_client]))
     end
@@ -24,9 +24,9 @@ describe('Clients') do
 
   describe('.find') do
     it('will find the client using the id') do
-      new_client = Clients.new({:name => "Kha"})
+      new_client = Clients.new({:name => "Kha",:stylist_id => 1})
       new_client.save()
-      new_client2 = Clients.new({:name => "Stacy"})
+      new_client2 = Clients.new({:name => "Stacy",:stylist_id => 1})
       new_client2.save()
       expect(Clients.find(new_client2.id())).to(eq(new_client2))
     end
@@ -34,7 +34,7 @@ describe('Clients') do
 
   describe('#update') do
     it('will update the name of the client') do
-      new_client = Clients.new({:name => "Kha"})
+      new_client = Clients.new({:name => "Kha",:stylist_id => 2})
       new_client.save()
       new_client.update({:name => "Pratt"})
       expect(new_client.name()).to(eq("Pratt"))
@@ -43,15 +43,12 @@ describe('Clients') do
 
   describe('#delete') do
     it('will delete a client') do
-      new_client = Clients.new({:name => "Kha"})
+      new_client = Clients.new({:name => "Kha",:stylist_id => 1})
       new_client.save()
-      new_client2 = Clients.new({:name => "Pratt"})
+      new_client2 = Clients.new({:name => "Pratt",:stylist_id => 2})
       new_client2.save()
       new_client.delete()
       expect(Clients.all()).to(eq([new_client2]))
     end
   end
-
-
-
 end
