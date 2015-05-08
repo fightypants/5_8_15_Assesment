@@ -18,6 +18,15 @@ get('/clients') do
   erb(:clients)
 end
 
+post('/clients') do
+  @stylists = Stylists.all()
+  name = params.fetch('name')
+  client = Clients.new({:name => name, :id => nil, :stylist_id => 0})
+  client.save()
+  @clients = Clients.all()
+  erb(:clients)
+end
+
 
 get('/stylists') do
   @stylists = Stylists.all()
@@ -30,4 +39,15 @@ post('/stylists') do
   stylist.save()
   @stylists = Stylists.all()
   erb(:stylists)
+end
+
+get('/stylists/:id') do
+  @stylists = Stylists.find(params.fetch('id').to_i())
+  @clients = Clients.all()
+  erb(:stylists_info)
+end
+
+patch('/stylists/:id') do
+  @stylists = Stylists.find(params.fetch('id').to_i())
+  # stuck here, cannot associate client with stylist
 end

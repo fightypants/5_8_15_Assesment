@@ -7,8 +7,25 @@
     <label for="name">Client's name:</label>
     <input id="name" name="name" type="text">
     <button type="submit">Add a Client</button>
-  </form>
+</form>
 
 <% else %>
   <p>You need to hire some employees before you can add Clients!</p>
 <% end %>
+
+<% if @clients.any?() %>
+  <ul>
+    <% @clients.each do |client| %>
+    <li><%= client.name() %></li>
+    <% end %>
+  </ul>
+
+
+  <% else %>
+  <p>Add some clients!</p>
+<% end %>
+
+
+
+
+<a href="/">Return to Main Page</a>

@@ -1,0 +1,23 @@
+<!-- stuck here, cannot associate client with stylist -->
+
+<h2><%= @stylists.name() %></h2>
+
+<h3>Select a client to assign to this employee:</h3>
+
+<% if @clients.any?() %>
+  <form action="/stylists/<%= @stylists.id %>" method="post">
+    <input type="hidden" name="_method" value="patch">
+
+    <% @clients.each() do |client| %>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" name="client_id[]" value="<%= client.id() %>"><%= client.name() %>
+      </label>
+    </div>
+    <% end %>
+
+    <button type="submit">Add Client</button>
+  </form>
+<% end %>
+
+<a href="/">Return to Main Page</a>
